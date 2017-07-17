@@ -16,7 +16,7 @@
 #check args length
 if ($args.Length -ne 4)
 {
-	Write-Error "Wrong Command Format: boxservicepost.ps1 <host> <security token> <remote box path> <box environment> <local file path>"
+	Write-Error "Wrong Command Format: boxservicepost.ps1 <host> <security token> <remote box path> <box environment>"
 	Exit 1
 }
 
@@ -26,13 +26,13 @@ $path = $args[2]
 $env = $args[3] 
 
 $headers = @{}
-$headers.Add("environment",$this.env)
-$headers.Add("path",$this.path)
-$headers.Add("Authorization", "Token "+$this.json_token)
+$headers.Add("environment",$env)
+$headers.Add("path",$path)
+$headers.Add("Authorization", "Token "+$json_token)
 
 #invoke the service
 try {
-    $result = Invoke-WebRequest -UseBasicParsing -Uri $this.uri -Method POST -Headers $headers 
+    $result = Invoke-WebRequest -UseBasicParsing -Uri $uri -Method POST -Headers $headers 
     Write-Host $result
 }
 catch [System.Net.WebException] {
