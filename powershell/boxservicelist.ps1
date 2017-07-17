@@ -11,10 +11,8 @@
 # 4) ENV: Box environment to list the files (e.g. PRD, PPRD)
 #
 # NOTES: requires Powershell >=3.0
-####################################################$uri##################
+######################################################################
 
-# check aggs length
-# 
 Class BoxService{
     [String]$json_token
     [String]$path
@@ -78,7 +76,6 @@ Class BoxService{
 
     }
     Post(){
-        
         #get file
         [string]$file = Read-Host -Prompt "enter local file path"
         #read file
@@ -120,7 +117,7 @@ Class BoxService{
     
 }
 
-
+#create a BoxService object and get required info from the user
 $box = New-Object BoxService
 [string]$tok_input = Read-Host -Prompt 'Input your authentication token'
 $box.SetToken($tok_input)
@@ -130,6 +127,8 @@ $box.SetPath($path_input)
 $box.SetEnv($env_input)
 [string]$uri_input = Read-Host -Prompt 'Input your url'
 $box.SetUri($uri_input)
+
+#create a menu for the user to interact with box data
 do {
     [int] $choice = 0
     while($choice -lt 1 -or $choice -gt 4) {
