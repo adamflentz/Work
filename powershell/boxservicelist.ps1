@@ -20,8 +20,47 @@ Class BoxService{
     [String]$path
     [String]$env
     [String]$uri
+    [String]$download_path
+
+    #standard getters and setters for methods
+    SetToken([string]$tok_string){
+        $json_token = $tok_string
+    }
+    SetPath([string]$path_string){
+        $path = $path_string
+    }
+    SetEnv([string]$env_string){
+        $env = $env_string
+    }
+    SetUri([string]$uri_string){
+        $uri = $uri_string
+    }
+    SetDownloadPath([String]$download_string){
+        $download_path = $download_string
+    }
+
+    [string]GetToken(){
+        Write-Host $json_token
+        return $json_token
+    }
+    [string]GetPath(){
+        Write-Host $path
+        return $path
+    }
+    [string]GetEnv(){
+        Write-Host $env
+        return $env
+    }
+    [string]GetUri(){
+        Write-Host $uri
+        return $uri
+    }
+    [string]GetDownloadPath(){
+        Write-Host $download_path
+        return $download_path
+    }
+
     List($uri, $json_token, $path, $env){
-        
         #create headers
         $headers = @{}
         $headers.Add("environment",$env)
@@ -39,18 +78,19 @@ Class BoxService{
         }
 
     }
+    
 }
-if ($args.length -ne 4)
-            {$uri
-                Write-Error "Wrong Command Format: boxservicelist.ps1 <host> <security token> <remote box path> <box environment>"
-                Exit 1
-            }
+#if ($args.length -ne 4)
+            #{$uri
+               # Write-Error "Wrong Command Format: boxservicelist.ps1 <host> <security token> <remote box path> <box environment>"
+               # Exit 1
+            #}
 
-        $uri = $args[0]
-        $json_token = $args[1]
-        $path = $args[2]
-        $env = $args[3]
-$box = New-Object BoxService
-$box.List
-Write-Host ($box | Get-Member -MemberType Properties)
+        #$uri = $args[0]
+        #$json_token = $args[1]
+        #$path = $args[2]
+        #$env = $args[3]
+#$box = New-Object BoxService
+#$box.List
+#Write-Host ($box | Get-Member -MemberType Properties)
 
