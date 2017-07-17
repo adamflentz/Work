@@ -9,7 +9,7 @@
 # 2) TOKEN: security token for authorization
 # 3) PATH: Box "path" to download the file
 # 4) ENV: Box environment to download the file (e.g. PRD, PPRD)
-# 5) FILE: path to box file to DOWNLOAD
+# 5) FILE: path where the file should be downloaded
 #
 # NOTES: requires Powershell >=3.0
 ######################################################################
@@ -25,4 +25,15 @@ $uri = $args[0]
 $json_token = $args[1] 
 $path = $args[2] 
 $env = $args[3] 
-$file = $args[4] 
+$download_file_path = $args[4] 
+
+#invoke the service
+try {
+	$result = Invoke-WebRequest -UseBasicParsing -Uri $uri -Method POST -Headers $headers -OutFile $download_file_path
+	Write-Host $result
+}
+catch [System.Net.WebException] {
+    Write-Error( "FAILED to reach '$uri': $_" )
+    throw $_
+}
+
