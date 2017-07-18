@@ -115,5 +115,7 @@ if($md5 -e 'Y'){
 		Write-Error( "FAILED to reach '$uri': $_" )
 		throw $_
 	}
+
+	Remove-Item $file+".md5"
 }
 
