@@ -23,7 +23,7 @@ class UploadFileForm(TemplateView):
         #dialect = csv.Sniffer().sniff(codecs.EncodedFile(csvfile, "utf-8").read(1024))
         #csvfile.open()
         #reader = csv.reader(codecs.EncodedFile(csvfile, "utf-8"), delimiter=',', dialect=dialect)
-        #analyzer = CSVInspector()
+        analyzer = CSVInspector()
         #analyzeroutput = analyzer.inspection(csvfile)
         analyzeroutput= "hello"
         return render(request, "csvoutput.html", {"inspector": analyzeroutput})
