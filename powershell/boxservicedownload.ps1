@@ -19,7 +19,7 @@
 #check args length
 if ($args.Length -ne 6)
 {
-	Write-Error "Wrong Command Format: boxservicepost.ps1 <host> <security token> <remote box path> <box environment> <local file path>"
+	Write-Error "Wrong Command Format: boxservicepost.ps1 <host> <security token> <remote box path> <box environment> <file name> <delete flag>"
 	Exit 1
 }
 
