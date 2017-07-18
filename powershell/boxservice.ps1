@@ -66,9 +66,12 @@ Class BoxService{
 
         #invoke the service
         try {
-            $result = Invoke-WebRequest -UseBasicParsing -Uri $this.uri -Method POST -Headers $headers 
-            Write-Host $result
-        }
+            $result = Invoke-WebRequest -UseBasicParsing -Uri ($this.uri+"list/") -Method POST -Headers $headers 
+            $resultObj = ConvertFrom-Json -InputObject $result
+            foreach ($filename in $resultObj) {
+            Write-Host $filename.filename
+            }
+        }   
         catch [System.Net.WebException] {
             Write-Error( "FAILED to reach '$this.uri': $_" )
             throw $_
@@ -106,13 +109,38 @@ Class BoxService{
 
         #invoke the service
         try {
-            $result = Invoke-WebRequest -UseBasicParsing -Uri $this.uri -Method POST -Headers $headers -Body $bodyLines -ContentType "multipart/form-data; boundary=`"$boundary`"" 
+            $result = Invoke-WebRequest -UseBasicParsing -Uri ($this.uri+"post/") -Method POST -Headers $headers -Body $bodyLines -ContentType "multipart/form-data; boundary=`"$boundary`"" 
             Write-Host $result
         }
         catch [System.Net.WebException] {
             Write-Error( "FAILED to reach '$this.uri': $_" )
             throw $_
         }
+    }
+
+    Download(){
+        #get file
+        [string]$filename = Read-Host -Prompt "enter file name"
+        [string]$deleteflag = Read-Host -Prompt "delete after downloading? Enter Y for yes or N for no"
+        #create headers
+        $headers = @{}
+        $headers.Add("environment",$this.env)
+        $headers.Add("path",$this.path)
+        $headers.Add("Authorization", "Token "+$this.json_token)
+        $headers.Add("filename", $filename)
+        $headers.Add("deleteflag", $deleteflag)
+        #invoke the service
+        try {
+            $result = Invoke-WebRequest -UseBasicParsing -Uri ($this.uri+"download/") -Method POST -Headers $headers
+            # Write-Host $result
+            $result | Out-File $filename
+
+        }
+        catch [System.Net.WebException] {
+            Write-Error( "FAILED to reach '$this.uri': $_" )
+            throw $_
+        }
+
     }
     
 }
@@ -140,11 +168,8 @@ do {
         switch($choice)
         {
             1 {Write-Host "`nListing Files:"; $box.List(); Write-Host "`n"}
-            2 {
-                #TODO add download function
-                Write-Host "`nOption 2 selected.`n"
-            }
-            3 {Write-Host "`nUploading File:"; $box.Post(); Write-Host "`n"}
+            2 {Write-Host "`nDownloading File:"; $box.Download(); Write-Host "File downloaded.`n"}
+            3 {Write-Host "`nUploading File:"; $box.Post(); Write-Host "File uploaded.`n"}
             4 {
                 Write-Host "`nGoodbye`n"
                 Exit 1

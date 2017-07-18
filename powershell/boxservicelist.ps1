@@ -33,7 +33,10 @@ $headers.Add("Authorization", "Token "+$json_token)
 #invoke the service
 try {
     $result = Invoke-WebRequest -UseBasicParsing -Uri $uri -Method POST -Headers $headers 
-    Write-Host $result
+    $resultObj = ConvertFrom-Json -InputObject $result
+    foreach ($filename in $resultObj) {
+        Write-Host $filename.filename
+    }
 }
 catch [System.Net.WebException] {
     Write-Error( "FAILED to reach '$this.uri': $_" )
