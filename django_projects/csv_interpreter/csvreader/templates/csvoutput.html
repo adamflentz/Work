@@ -5,26 +5,37 @@
     <title>Output</title>
 </head>
 <body>
-    <h1>CSV Content</h1>
-    <p>{{ csv }}</p>
-    <!--<table>
-        {% for row in csvcontent %}
-            <tr>
-            {% if forloop.counter == 1 %}
-                {% for data in row %}
-                    <th>{{ data }}</th>
-                {% endfor %}
-            {% else %}
-                {% for data in row %}
-                    <td>{{ data }}</td>
-                {% endfor %}
-            {% endif %}
-            </tr>
-        {% endfor %}
-    </table>-->
+    <div id="header" name="'header">
+        <h1>CSV Content</h1>
+    </div>
 
-    {{ validator }}
+    <div id="goodtables_content" name="goodtables_content">
+        <div id="filename" name="filename">
+        <p>{{ csv }}</p>
+        </div>
 
+        <div id="validator_content" name="validator_content">
+        {{ validator }}
+        </div>
+
+        <div id="table_content" name="table_content">
+            <table>
+                {% for row in csvcontent %}
+                    <tr>
+                    {% if forloop.counter == 1 %}
+                        {% for data in row %}
+                            <th>{{ data }}</th>
+                        {% endfor %}
+                    {% else %}
+                        {% for data in row %}
+                            <td>{{ data }}</td>
+                        {% endfor %}
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
 
 </body>
 </html>

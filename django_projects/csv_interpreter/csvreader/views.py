@@ -7,7 +7,10 @@ from forms import DocumentForm
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from goodtables import validate
-import csv, codecs
+import csv, codecs, os
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from django.conf import settings
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -27,10 +30,10 @@ class UploadFileForm(TemplateView):
 
     def post(self, request):
         csvfile = request.FILES['docfile']
-        validator = validate(csvfile)
-        content = csv.DictReader(csvfile)
+        path = default_storage.save('tmp/csvfile.csv', ContentFile(csvfile.read()))
         reader = csv.reader(csvfile)
         csvcontent = list(reader)
+        validator = validate(path, error_limit=1000000, row_limit=1000000)
 
         return render(request, 'csvoutput.html', {'csv': csvfile, 'csvcontent': csvcontent, 'validator': validator})
 
