@@ -83,6 +83,7 @@ catch [System.Net.WebException] {
     throw $_
 }
 
+#only runs if md5 file was found earlier.
 if($md5 -eq 'Y'){
 	#converter for powershell 3.0 or less
 	if($MajorVersion -lt 4){
