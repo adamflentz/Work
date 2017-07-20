@@ -1,5 +1,10 @@
-from django import forms
+# -*- coding: utf-8 -*-
 
-class UploadFileForm(forms.Form):
-    title = forms.CharField(max_length=50)
-    file = forms.FileField()
+from django import forms
+from validators import validate_file_extension
+
+
+class DocumentForm(forms.Form):
+    docfile = forms.FileField(
+        label='Select a file'
+    )

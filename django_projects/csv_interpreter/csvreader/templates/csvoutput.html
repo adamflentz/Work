@@ -5,7 +5,26 @@
     <title>Output</title>
 </head>
 <body>
-    <h1>Is this working?</h1>
+    <h1>CSV Content</h1>
+    <p>{{ csv }}</p>
+    <!--<table>
+        {% for row in csvcontent %}
+            <tr>
+            {% if forloop.counter == 1 %}
+                {% for data in row %}
+                    <th>{{ data }}</th>
+                {% endfor %}
+            {% else %}
+                {% for data in row %}
+                    <td>{{ data }}</td>
+                {% endfor %}
+            {% endif %}
+            </tr>
+        {% endfor %}
+    </table>-->
+
+    {{ validator }}
+
 
 </body>
 </html>

@@ -61,7 +61,9 @@ if($md5 -eq 'Y'){
 			}
 			catch [System.Net.WebException] {
 				Write-Error( "FAILED to reach '$uri': $_" )
-				throw $_
+				Write-Host "Process will continue without retrieving MD5.  File cannot be verified."
+				$md5 = 'N'
+				$_
 			}
 		$headers.Remove("filename")
 	}

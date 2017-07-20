@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Howdy!</title>
-</head>
-<body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Minimal Django File Upload Example</title>
+    </head>
 
-    <h1>This is going to turn into a csv inspector!</h1>
+    <body>
+        <!-- Upload form. Note enctype attribute! -->
+        <form action="{% url "output" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>{{ form.non_field_errors }}</p>
 
-    <form action="{% url "output" %}" method="post" enctype="multipart/form-data">{% csrf_token %}
-    <input type="file" name="csv_file" />
-    <input type="submit" value="Upload" />
-    </form>
+            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
 
-    <a href="/about/">About Me</a>
-</body>
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+
+            <p><input type="submit" value="Upload"/></p>
+        </form>
+    </body>
+
 </html>
