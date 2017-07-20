@@ -1,0 +1,4 @@
+REQURED FILES
+
+django-bootstrap3
+goodtables
