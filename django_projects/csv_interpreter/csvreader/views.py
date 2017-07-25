@@ -34,7 +34,13 @@ class UploadFileForm(TemplateView):
         reader = csv.reader(csvfile)
         csvcontent = list(reader)
         validator = validate(path, error_limit=1000000, row_limit=1000000)
+        validatorerrorcount = validator['tables'][0]['error-count']
+        validatorheaders = []
+        for element in validator['tables'][0]['headers']:
+            validatorheaders.append(element.encode("utf-8"))
+        colcount = len(validatorheaders)
 
-        return render(request, 'csvoutput.html', {'csv': csvfile, 'csvcontent': csvcontent, 'validator': validator})
+        return render(request, 'csvoutput.html', {'csv': csvfile, 'csvcontent': csvcontent, 'validator': validator, 'validatorerrorcount':validatorerrorcount, 'validatorheaders':validatorheaders, 'colcount': colcount})
+
 
 

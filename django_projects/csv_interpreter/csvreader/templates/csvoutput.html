@@ -1,13 +1,15 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Output</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/csvoutput.css' %}">
 </head>
 <body>
-    <div id="header" name="'header">
-        <h1>CSV Content</h1>
-    </div>
+     <div class="page-header"><h1>CSV Content</h1></div>
 
     <div id="goodtables_content" name="goodtables_content">
         <div id="filename" name="filename">
@@ -15,11 +17,18 @@
         </div>
 
         <div id="validator_content" name="validator_content">
-        {{ validator }}
+            <p>Column Count: {{ colcount }}</p>
+            <p>Headers:
+                {% for element in validatorheaders %}
+                {{ element }},
+                {% endfor %}
+            </p>
+            <p>Number of errors: {{ validatorerrorcount }}</p>
+            <p>Full validator code: {{ validator }}</p>
         </div>
 
         <div id="table_content" name="table_content">
-            <table>
+            <table align="center">
                 {% for row in csvcontent %}
                     <tr>
                     {% if forloop.counter == 1 %}

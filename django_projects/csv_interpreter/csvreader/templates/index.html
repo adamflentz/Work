@@ -1,25 +1,33 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
         <title>Minimal Django File Upload Example</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
     </head>
 
     <body>
+        <div class="page-header"><h1>CSV Validator</h1></div>
         <!-- Upload form. Note enctype attribute! -->
-        <form action="{% url "output" %}" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <p>{{ form.non_field_errors }}</p>
+        <div class="form-group">
+            <form action="{% url "output" %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p>{{ form.non_field_errors }}</p>
 
-            <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+                <p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
 
-            <p>
-                {{ form.docfile.errors }}
-                {{ form.docfile }}
-            </p>
+                <p>
+                    {{ form.docfile.errors }}
+                    {{ form.docfile }}
+                </p>
 
-            <p><input type="submit" value="Upload"/></p>
-        </form>
+                <p><input type="submit" value="Upload"/></p>
+            </form>
+        </div>
     </body>
 
 </html>

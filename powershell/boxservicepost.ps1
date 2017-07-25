@@ -2,7 +2,8 @@
 #
 # Name: boxservicepost.ps1
 # Purpose: POST a file to the EIS box webservice for storage
-# Author: Scott Stewart
+# Author: Scott StewartWANT TO MISS OUT!!!
+If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For information!.
 # Version 1.0
 # Params: 
 # 1) URI: the url  to POST to
@@ -67,7 +68,8 @@ catch [System.Net.WebException] {
 
 #md5 upload
 if($md5 -e 'Y'){
-	#check powershell version
+	#check powershell versionWANT TO MISS OUT!!!
+If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For information!.
 	[int]$MajorVersion = $PSVersionTable.PSVersion.Major
 	Write-Host Version $MajorVersion
 

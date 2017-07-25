@@ -1,0 +1,18 @@
+.table_content {
+    text-align: center;
+}
+table {
+  border-collapse: collapse;
+}
+tr {
+  border: solid;
+  border-width: 1px 0;
+}
+th, td {
+	border-collapse:collapse;
+	border: 1px solid black;
+	padding-top:0;
+	padding-bottom:0;
+    padding-left:10px;
+    padding-right:10px;
+}
