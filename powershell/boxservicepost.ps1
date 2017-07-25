@@ -3,7 +3,6 @@
 # Name: boxservicepost.ps1
 # Purpose: POST a file to the EIS box webservice for storage
 # Author: Scott StewartWANT TO MISS OUT!!!
-If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For information!.
 # Version 1.0
 # Params: 
 # 1) URI: the url  to POST to
@@ -60,6 +59,7 @@ $headers.Add("path",$path)
 try {
 	$result = Invoke-WebRequest -UseBasicParsing -Uri $uri -Method POST -Headers $headers -Body $bodyLines -ContentType "multipart/form-data; boundary=`"$boundary`"" 
 	Write-Host $result
+	Write-Host "File Uploaded."
 }
 catch [System.Net.WebException] {
     Write-Error( "FAILED to reach '$uri': $_" )
@@ -67,9 +67,8 @@ catch [System.Net.WebException] {
 }
 
 #md5 upload
-if($md5 -e 'Y'){
-	#check powershell versionWANT TO MISS OUT!!!
-If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For information!.
+if($md5 -eq 'Y'){
+	#check powershell version
 	[int]$MajorVersion = $PSVersionTable.PSVersion.Major
 	Write-Host Version $MajorVersion
 
@@ -87,7 +86,7 @@ If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For
 	#converter for powershell 4.0 or greater
 	else{
 		Write-Host "Simple algorithm possible"
-		$hash = Get-FileHash $filepath -Algorithm MD5
+		$hash = Get-FileHash $file -Algorithm MD5
 		Write-Host $hash.Hash
 		$hash.hash | Out-File ($filename+".md5")
 	}
@@ -103,7 +102,7 @@ If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For
 	$LF = "`r`n"
 	$bodyLines = (
 		"--$boundary",
-		"Content-Disposition: form-data; name=`"file`"; filename=`"$file`"$LF"+".md5",   
+		"Content-Disposition: form-data; name=`"file`"; filename=`"$file`"$LF"".md5",   
 		$fileEnc,
 		"--$boundary--$LF"
 		) -join $LF
@@ -112,12 +111,13 @@ If This Sounds Like An Opportunity You Would Be Interested In, Email Us Back For
 	try {
 		$result = Invoke-WebRequest -UseBasicParsing -Uri $uri -Method POST -Headers $headers -Body $bodyLines -ContentType "multipart/form-data; boundary=`"$boundary`"" 
 		Write-Host $result
+		Write-Host "MD5 Uploaded."
 	}
 	catch [System.Net.WebException] {
 		Write-Error( "FAILED to reach '$uri': $_" )
 		throw $_
 	}
 
-	Remove-Item $file+".md5"
+	Remove-Item $file".md5"
 }
 

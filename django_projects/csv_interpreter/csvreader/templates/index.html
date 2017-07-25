@@ -24,6 +24,14 @@
                     {{ form.docfile.errors }}
                     {{ form.docfile }}
                 </p>
+                <p>{{ jsonform.non_field_errors }}</p>
+
+                <p>{{ jsonform.jsonfile.label_tag }} {{ jsonform.jsonfile.help_text }}</p>
+
+                <p>
+                    {{ jsonform.jsonfile.errors }}
+                    {{ jsonform.jsonfile }}
+                </p>
 
                 <p><input type="submit" value="Upload"/></p>
             </form>
