@@ -31,11 +31,21 @@ class UploadFileForm(TemplateView):
     template_name = "csvoutput.html"
 
     def post(self, request):
+        print(len(request.FILES))
+        if len(request.FILES) == 1:
+            jsonfile = None
+        else:
+            jsonfile = request.FILES['jsonfile']
+            jsonpath = default_storage.save('tmp/jsonfile.json', ContentFile(jsonfile.read()))
         csvfile = request.FILES['docfile']
         path = default_storage.save('tmp/csvfile.csv', ContentFile(csvfile.read()))
         reader = csv.reader(csvfile)
         csvcontent = list(reader)
-        validator = validate(path, error_limit=1000000, row_limit=1000000)
+        if jsonfile is None:
+            validator = validate(path, error_limit=1000000, row_limit=1000000)
+        else:
+            validator = validate(path, error_limit=1000000, row_limit=1000000, schema=jsonpath)
+        print(validator)
         validatorerrorcount = validator['tables'][0]['error-count']
         validatorheaders = []
         for element in validator['tables'][0]['headers']:
