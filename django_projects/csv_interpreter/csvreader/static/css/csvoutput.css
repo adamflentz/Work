@@ -1,18 +1,32 @@
 .table_content {
-    text-align: center;
+    padding-top:10px;
 }
-table {
-  border-collapse: collapse;
+.validatorcode {
+    font-size: 33%;
 }
-tr {
+table.data_table_content {
+    border-collapse: collapse;
+}
+table.data_table_content tr {
   border: solid;
   border-width: 1px 0;
 }
-th, td {
+table.data_table_content th, td {
 	border-collapse:collapse;
 	border: 1px solid black;
 	padding-top:0;
 	padding-bottom:0;
     padding-left:10px;
     padding-right:10px;
+}
+
+table.error_content {
+    font-size: 50%;
+}
+table.error_content tr{
+    border-style: hidden;
+    border-width: 1px 0;
+}
+table.error_content th, td {
+    border-collapse:collapse;
 }

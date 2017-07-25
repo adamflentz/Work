@@ -6,6 +6,8 @@
     <title>Output</title>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/csvoutput.css' %}">
 </head>
 <body>
@@ -24,27 +26,40 @@
                 {% endfor %}
             </p>
             <p>Number of errors: {{ validatorerrorcount }}</p>
-            <p>Full validator code: {{ validator }}</p>
+            <button type="button" data-toggle="collapse" data-target="#errors">Show All Errors:</button>
+            <div id="errors" class="collapse">
+                <table  class = "error_content" >
+                {% for element in errormessage %}
+                    <tr><td>{{ element }}</td></tr>
+                {% endfor %}
+                </table>
+            </div>
+
+
         </div>
 
-        <div id="table_content" name="table_content">
-            <table align="center">
-                {% for row in csvcontent %}
-                    <tr>
-                    {% if forloop.counter == 1 %}
-                        {% for data in row %}
-                            <th>{{ data }}</th>
-                        {% endfor %}
-                    {% else %}
-                        {% for data in row %}
-                            <td>{{ data }}</td>
-                        {% endfor %}
-                    {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
+        <div class = "container">
+            <div id="table_content" name="table_content" class = "table_content">
+                <table class="data_table_content" align="center">
+                    {% for row in csvcontent %}
+                        <tr>
+                        {% if forloop.counter == 1 %}
+                            {% for data in row %}
+                                <th>{{ data }}</th>
+                            {% endfor %}
+                        {% else %}
+                            {% for data in row %}
+                                <td>{{ data }}</td>
+                            {% endfor %}
+                        {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
+        <div class="validatorcode"><p>Full validator code: {{ validator }}</p></div>
     </div>
+
 
 </body>
 </html>
