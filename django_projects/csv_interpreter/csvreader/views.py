@@ -11,8 +11,10 @@ import csv, codecs, os
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+
 class HomePageView(TemplateView):
     def post(self, request):
         form = DocumentForm(request.POST, request.FILES)
@@ -26,6 +28,7 @@ class HomePageView(TemplateView):
 
 class AboutPageView(TemplateView):
     template_name = "about.html"
+
 
 class UploadFileForm(TemplateView):
     template_name = "csvoutput.html"

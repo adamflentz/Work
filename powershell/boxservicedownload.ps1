@@ -63,7 +63,7 @@ if($md5 -eq 'Y'){
 				Write-Error( "FAILED to reach '$uri': $_" )
 				Write-Host "Process will continue without retrieving MD5.  File cannot be verified."
 				$md5 = 'N'
-				$_
+				throw $_
 			}
 		$headers.Remove("filename")
 	}
