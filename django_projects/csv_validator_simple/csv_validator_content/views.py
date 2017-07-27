@@ -1,19 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.views.generic import TemplateView
-import validate_table, encode_dict
-
-
-
 from wsgiref.util import FileWrapper
 from forms import DocumentForm, JSONDocumentForm
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from goodtables import validate
-
-
-import json
+import json, ast
 
 
 # Create your views here.
@@ -36,8 +30,7 @@ class HomePageView(TemplateView):
                     validator = validate(path, error_limit=1000000, row_limit=1000000, schema=jsonpath)
                 return validator
             validator_content = validate_table(request)
-            print(validator_content)
-            return render(request, 'home.html', {'validator_content': validator_content})
+            return HttpResponse(json.dumps(validator_content))
     def get(self, request):
         form = DocumentForm()  # A empty, unbound form
         jsonform = JSONDocumentForm()

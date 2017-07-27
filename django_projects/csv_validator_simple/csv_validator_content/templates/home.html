@@ -7,9 +7,6 @@
     </head>
 
     <body>
-    {% if validator_content %}
-        {{ validator_content }}
-    {% else %}
         <div class="form-group">
             <form  method="post" enctype="multipart/form-data">
 
@@ -33,7 +30,6 @@
                 <p><input type="submit" value="Upload" name="submit"/></p>
             </form>
         </div>
-    {% endif %}
     </body>
 
 </html>
