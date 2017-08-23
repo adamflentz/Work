@@ -2,7 +2,7 @@
 #
 # Name: boxservicepost.ps1
 # Purpose: POST a file to the EIS box webservice for storage
-# Author: Scott StewartWANT TO MISS OUT!!!
+# Author: Scott Stewart
 # Version 1.0
 # Params: 
 # 1) URI: the url  to POST to

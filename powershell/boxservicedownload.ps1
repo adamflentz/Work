@@ -30,8 +30,8 @@ $path = $args[2]
 $env = $args[3] 
 $filename = $args[4] 
 $deleteflag = $args[5]
-if(args[6]){
-	$md5=args[6]
+if($args.Length -eq 7){
+	$md5=$args[6]
 }
 else{
 	$md5 = $null 
@@ -91,7 +91,7 @@ if($md5 -eq 'Y'){
 		$md5object = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
 		$hash = [System.BitConverter]::ToString($md5.ComputeHash([System.IO.File]::ReadAllBytes($result)))
 		if($hash.hash - $md5result){
-			Write-Output $result
+			$result.content | Out-File $filename
 		}
 
 	}
@@ -102,11 +102,11 @@ if($md5 -eq 'Y'){
 		$hash = Get-FileHash $result -Algorithm MD5
 		Write-Host $hash.Hash
 		if($hash.hash - $md5result){
-			Write-Output $result
+			$result.content | Out-File $filename
 		}
 	}
 }
 else{
-	Write-Output $result
+	$result.content | Out-File $filename
 }
 

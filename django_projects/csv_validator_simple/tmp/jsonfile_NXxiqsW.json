@@ -1,0 +1,58 @@
+{
+	
+	"fields": [
+		{
+			"name": "id",
+			"title": "id",
+			"type": "integer",
+			"constraints": {
+				"required": true
+			}
+		},
+		{
+			"name": "first_name",
+			"title": "first_name",
+			"type": "string",
+			"constraints": {
+				"minLength": 1,
+				"required": true
+			}
+		},
+		{
+			"name": "last_name",
+			"title": "last_name",
+			"type": "string",
+			"constraints": {
+				"minLength": 1,
+				"required": true
+			}
+		},
+		{
+			"name": "email",
+			"title": "email",
+			"format": "email",
+			"type": "string",
+			"constraints": {
+				"required": true,
+				"minLength": 1
+			}
+		},
+		{
+			"name": "gender",
+			"title": "gender",
+			"type": "string",
+			"constraints": {
+				"required": false
+			}
+		},
+		{
+			"name": "ip_address",
+			"title": "ip_address",
+			"type": "string",
+			"constraints": {
+				"required": true
+			}
+		}
+	],
+	"missingValues": [ "", "NaN", "-", " " ],
+}

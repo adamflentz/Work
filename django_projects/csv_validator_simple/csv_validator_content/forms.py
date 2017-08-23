@@ -8,5 +8,5 @@ class DocumentForm(forms.Form):
     )
 class JSONDocumentForm(forms.Form):
     jsonfile = forms.FileField(
-        label='Select a JSON schema file (optional)', required=False
+        label='Choose a JSON Schema file path'
     )

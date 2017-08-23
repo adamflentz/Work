@@ -1,0 +1,1 @@
+{"tables": [{"headers": ["id", "first_name", "last_name", "email", "gender", "ip_address"], "error-count": 0, "errors": [], "row-count": 1001, "time": 0.031, "valid": true, "source": "tmp/csvfile.csv"}], "error-count": 0, "table-count": 1, "warnings": [], "valid": true, "time": 0.032}
