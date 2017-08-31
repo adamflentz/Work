@@ -1,1 +1,6 @@
-dir_to_ignore/env
+*.pyc
+.idea
+tmp/*
+key.pem
+!tmp/.tmpdir
+run/*
