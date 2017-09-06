@@ -20,7 +20,7 @@ Get-RabbitMQQueue -Name hello
 
 Add-RabbitMQQueueBinding '/' $ExchangeName $QueueName 'GuestExchange-GuestQueue' 
 
-$Incoming = Get-RabbitMQMessage -VirtualHost / -Name $QueueName 
+$Incoming = Get-RabbitMQMessage -VirtualHost / -Name $QueueName -Remove
 
 $IncomingData = $Incoming.payload
 $IncomingJson = ConvertFrom-Json -InputObject $IncomingData
