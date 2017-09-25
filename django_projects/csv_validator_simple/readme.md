@@ -7,7 +7,7 @@ If all modules are installed through pip to the versions in requirements.txt, th
 ```
 curl -H "Authorization: Token <your token>" -F docfile=@<your csv file> -F jsonfile=@<your json file> -F errorlimit=<True or False> -F order_fields=<True or False> localhost:8000/csvvalidate/
 ```
-##Test Cases
+## Test Cases
 * test1: Checks a valid CSV to a valid schema. Should return no errors.
 * test2: Checks for a type mismatch within data.  Should return a non castable value error.
 * test3: Checks for non-matching column names: Should return an error of non-matching headers.
