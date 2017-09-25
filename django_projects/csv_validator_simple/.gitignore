@@ -5,3 +5,5 @@ key.pem
 !tmp/.tmpdir
 run/*
 env/*
+env
+tmp
