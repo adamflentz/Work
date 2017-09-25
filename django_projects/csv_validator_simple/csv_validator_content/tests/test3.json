@@ -1,0 +1,9 @@
+{	
+	"fields": [
+		{
+			"name": "Number2",
+			"title": "Number2",
+			"type": "integer"
+		}
+	]
+}

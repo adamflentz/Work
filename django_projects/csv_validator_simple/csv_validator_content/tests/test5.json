@@ -1,0 +1,13 @@
+{	
+	"fields": [
+		{
+			"name": "Number",
+			"title": "Number",
+			"type": "integer",
+			"constraints": {
+				"required": true,
+				"unique": true
+			}
+		}
+	]
+}
