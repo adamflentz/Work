@@ -4,3 +4,4 @@ tmp/*
 key.pem
 !tmp/.tmpdir
 run/*
+env/*
