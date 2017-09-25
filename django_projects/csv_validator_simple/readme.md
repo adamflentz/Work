@@ -1,4 +1,4 @@
-# Project Title
+# CSV Validator
 
 REST Framework that validates CSV Files to an associated schema. Uses Frictionlessdata's goodtables API to validate to the schema.
 
